@@ -18,15 +18,7 @@ app.get("/icon", (req, res) => {
   res.render('icon', { filename:"./public/Apple_logo_black.svg", alt:"Apple Logo"});
 });
 
-app.get("/luck", (req, res) => {
-  const num = Math.floor( Math.random() * 6 + 1 );
-  let luck = '';
-  if( num==1 ) luck = '大吉';
-  else if( num==2 ) luck = '中吉';
-  console.log( 'あなたの運勢は' + luck + 'です' );
-  res.render( 'luck', {number:num, luck:luck} );
-});
-
+// じゃんけん
 app.get("/janken", (req, res) => {
   let hand = req.query.hand;
   let win = parseInt( req.query.win ) || 0;
@@ -60,5 +52,41 @@ app.get("/janken", (req, res) => {
   }
   res.render( 'janken', display );
 });
+
+// おみくじ
+app.get("/luck", (req, res) => {
+  const num = Math.floor( Math.random() * 6 + 1 );
+  let luck = '';
+  if( num==1 ) luck = '大吉';
+  else if( num==2 ) luck = '吉';
+  else if( num==3 ) luck = '中吉';
+  else if( num==4 ) luck = '末吉';
+  else if( num==5 ) luck = '凶';
+  else if( num==6 ) luck = '大凶';
+
+  res.render( 'luck', {number:num, luck:luck} );
+});
+
+// ガチャ
+app.get("/gacha", (req, res) => {
+  const star6 = ["中野一花", "中野二乃", "中野三玖", "中野四葉", "中野五月"];
+  const star5 = ["ネオ", "アビス", "アルスラーン", "ヤクモ", "キリンジ", "マギア", "マサムネ", "ナイトメア", "久遠"];
+  const star4 = ["星4キャラ"];
+
+  let result = '';
+  const randomNumber = Math.random() * 100; // 0〜100の乱数
+
+  if (randomNumber < 1.2) { // 1.2%の確率で星6を排出
+    result = star6[Math.floor(Math.random() * star6.length)];
+  } else if (randomNumber < 1.6) { // 0.4%の確率で星5を排出
+    result = star5[Math.floor(Math.random() * star5.length)];
+  } else { // それ以外は星4を排出
+    result = star4[0];
+  }
+
+  res.render('gacha', { character: result });
+});
+
+
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
