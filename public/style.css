@@ -3,9 +3,53 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
+    background-color: #f9f9f9;
 }
 h1 {
     background-color: #4CAF50;
     color: white;
     padding: 10px 0;
+    margin: 0;
+}
+#app {
+    margin: 20px auto;
+    max-width: 500px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+button:hover {
+    background-color: #45a049;
+}
+input {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+ul {
+    list-style: none;
+    padding: 0;
+}
+li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+li:last-child {
+    border-bottom: none;
 }
